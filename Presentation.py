@@ -6,7 +6,7 @@ import statsmodels.api as sm
 import folium
 import warnings
 warnings.filterwarnings('ignore')
-from streamlit_folium import folium_static
+#from streamlit_folium import folium_static
 
 
 # Configuration de la page
