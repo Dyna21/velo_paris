@@ -35,11 +35,6 @@ def load_data1(fichier):
 
 df_corrected = load_data1('comptage velo corrected.csv')
 '''
-# Importer les bibliothèques nécessaires
-import streamlit as st
-import pandas as pd
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 
 # Authentifier et créer une connexion avec Google Drive
 gauth = GoogleAuth()
@@ -50,17 +45,27 @@ drive = GoogleDrive(gauth)
 @st.cache
 def load_data(file_id):
     # Télécharger le fichier depuis Google Drive en utilisant son ID
-    downloaded = drive.CreateFile({'id': file_id})
+    downloaded = drive.CreateFile({'id': 1LRwsCun183RoAH7l88kG4x5rPPtwW6Yh})
     downloaded.GetContentFile('comptage_velo.csv')  # Télécharger le fichier avec un nom spécifié
     df = pd.read_csv('comptage_velo.csv', sep=';')  # Lire le fichier CSV
     return df
 
 # ID du fichier sur Google Drive
-file_id = 'YOUR_FILE_ID'
+file_id = '1LRwsCun183RoAH7l88kG4x5rPPtwW6Yh'
 
 # Charger les données depuis Google Drive
 df = load_data(file_id)
 
+# Charger le fichier corrigée pour le mettre en cache
+@st.cache_data
+def load_data1(fichier):
+    # Télécharger le fichier depuis Google Drive en utilisant son ID
+    downloaded = drive.CreateFile({'id': 1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu})
+    downloaded.GetContentFile('comptage_velo.csv')  # Télécharger le fichier avec un nom spécifié
+    df = pd.read_csv('comptage_velo.csv', sep=';')  # Lire le fichier CSV
+    return df
+file_id1 = '1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu'
+df_corrected = load_data1(file_id1)
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
 df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
 df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
