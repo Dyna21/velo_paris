@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import folium
 import warnings
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 warnings.filterwarnings('ignore')
 #from streamlit_folium import folium_static
 
@@ -17,7 +19,7 @@ st.set_page_config(
 
 # Titre principal
 st.title("🚲 :blue[Trafic cycliste à Paris]")
-
+''''
 # Charger le fichier original pour le mettre en cache
 @st.cache_data
 def load_data(fichier):
@@ -32,6 +34,33 @@ def load_data1(fichier):
     return df
 
 df_corrected = load_data1('comptage velo corrected.csv')
+'''
+# Importer les bibliothèques nécessaires
+import streamlit as st
+import pandas as pd
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+
+# Authentifier et créer une connexion avec Google Drive
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
+drive = GoogleDrive(gauth)
+
+# Charger le fichier original pour le mettre en cache
+@st.cache
+def load_data(file_id):
+    # Télécharger le fichier depuis Google Drive en utilisant son ID
+    downloaded = drive.CreateFile({'id': file_id})
+    downloaded.GetContentFile('comptage_velo.csv')  # Télécharger le fichier avec un nom spécifié
+    df = pd.read_csv('comptage_velo.csv', sep=';')  # Lire le fichier CSV
+    return df
+
+# ID du fichier sur Google Drive
+file_id = 'YOUR_FILE_ID'
+
+# Charger les données depuis Google Drive
+df = load_data(file_id)
+
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
 df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
 df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
