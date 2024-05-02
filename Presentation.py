@@ -19,13 +19,13 @@ st.set_page_config(
 
 # Titre principal
 st.title("🚲 :blue[Trafic cycliste à Paris]")
-''''
+
 # Charger le fichier original pour le mettre en cache
 @st.cache_data
 def load_data(fichier):
     df = pd.read_csv(fichier,sep=';') # Download the data
     return df
-df= load_data('comptage velo.csv')
+df= load_data('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
 
 # Charger le fichier corrigée pour le mettre en cache
 @st.cache_data
@@ -33,9 +33,9 @@ def load_data1(fichier):
     df = pd.read_csv(fichier) # Download the data
     return df
 
-df_corrected = load_data1('comptage velo corrected.csv')
-'''
+df_corrected = load_data1('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
 
+'''
 # Authentifier et créer une connexion avec Google Drive
 gauth = GoogleAuth()
 gauth.LocalWebserverAuth()
@@ -66,6 +66,7 @@ def load_data1(fichier):
     return df
 file_id1 = '1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu'
 df_corrected = load_data1(file_id1)
+'''
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
 df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
 df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
