@@ -5,11 +5,9 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import folium
 import warnings
-#from pydrive.auth import GoogleAuth
-#from pydrive.drive import GoogleDrive
-warnings.filterwarnings('ignore')
-#from streamlit_folium import folium_static
 
+# Ignorer les avertissements
+warnings.filterwarnings('ignore')
 
 # Configuration de la page
 st.set_page_config(
@@ -21,16 +19,17 @@ st.set_page_config(
 st.title("🚲 :blue[Trafic cycliste à Paris]")
 
 # Charger le fichier original pour le mettre en cache
-@st.cache_data
+@st.cache
 def load_data(fichier):
-    df = pd.read_csv(fichier,sep=';') # Download the data
+    df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
-df= load_data('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
 
-# Charger le fichier corrigée pour le mettre en cache
-@st.cache_data
+df = load_data('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
+
+# Charger le fichier corrigé pour le mettre en cache
+@st.cache
 def load_data1(fichier):
-    df = pd.read_csv(fichier) # Download the data
+    df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
 
 df_corrected = load_data1('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
