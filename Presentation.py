@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import folium
 import warnings
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+#from pydrive.auth import GoogleAuth
+#from pydrive.drive import GoogleDrive
 warnings.filterwarnings('ignore')
 #from streamlit_folium import folium_static
 
