@@ -24,7 +24,7 @@ def load_data(fichier):
     df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
 
-df = load_data('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
+df = load_data('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo.csv')
 
 # Charger le fichier corrigé pour le mettre en cache
 @st.cache
@@ -32,40 +32,8 @@ def load_data1(fichier):
     df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
 
-df_corrected = load_data1('https://googledrive.com/host/1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu/comptage%20velo%20corrected.csv')
+df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo%20corrected.csv')
 
-'''
-# Authentifier et créer une connexion avec Google Drive
-gauth = GoogleAuth()
-gauth.LocalWebserverAuth()
-drive = GoogleDrive(gauth)
-
-# Charger le fichier original pour le mettre en cache
-@st.cache
-def load_data(file_id):
-    # Télécharger le fichier depuis Google Drive en utilisant son ID
-    downloaded = drive.CreateFile({'id': 1LRwsCun183RoAH7l88kG4x5rPPtwW6Yh})
-    downloaded.GetContentFile('comptage_velo.csv')  # Télécharger le fichier avec un nom spécifié
-    df = pd.read_csv('comptage_velo.csv', sep=';')  # Lire le fichier CSV
-    return df
-
-# ID du fichier sur Google Drive
-file_id = '1LRwsCun183RoAH7l88kG4x5rPPtwW6Yh'
-
-# Charger les données depuis Google Drive
-df = load_data(file_id)
-
-# Charger le fichier corrigée pour le mettre en cache
-@st.cache_data
-def load_data1(fichier):
-    # Télécharger le fichier depuis Google Drive en utilisant son ID
-    downloaded = drive.CreateFile({'id': 1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu})
-    downloaded.GetContentFile('comptage_velo.csv')  # Télécharger le fichier avec un nom spécifié
-    df = pd.read_csv('comptage_velo.csv', sep=';')  # Lire le fichier CSV
-    return df
-file_id1 = '1rqbQijVCD3cmFSN3fCBN2sDaQbkEIihu'
-df_corrected = load_data1(file_id1)
-'''
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
 df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
 df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
