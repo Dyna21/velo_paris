@@ -35,8 +35,8 @@ def load_data1(fichier):
 df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo%20corrected.csv')
 
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
-#df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
-#df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
+df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
+df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
 
 
 #df = pd.read_csv("comptage velo corrected.csv")
@@ -45,7 +45,7 @@ df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/c
 #df['Date comptage'] = pd.to_datetime(df['Date comptage'])
     
 # Extraire la date sans l'heure
-#df_corrected['Date'] = df_corrected['Date comptage'].dt.date
+df_corrected['Date'] = df_corrected['Date comptage'].dt.date
     
 # Agréger les données par jour
 daily_sum = df_corrected.groupby('Date').agg({'Comptage horaire': 'sum'}).reset_index()
