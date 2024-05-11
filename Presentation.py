@@ -17,23 +17,23 @@ st.set_page_config(
 
 # Titre principal
 st.title("🚲 :blue[Trafic cycliste à Paris]")
-
+'''
 # Charger le fichier original pour le mettre en cache
 @st.cache_data
 def load_data(fichier):
     df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
-
+'''
 df = load_data('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo.csv')
-
+'''
 # Charger le fichier corrigé pour le mettre en cache
 @st.cache_data
 def load_data1(fichier):
     df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
-
+'''
 df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo%20corrected.csv')
-
+'''
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
 df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
 df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
@@ -50,7 +50,7 @@ df_corrected['Date'] = df_corrected['Date comptage'].dt.date
 # Agréger les données par jour
 daily_sum = df_corrected.groupby('Date').agg({'Comptage horaire': 'sum'}).reset_index()
 
-
+'''
 # Barre latérale avec les options de page
 st.sidebar.title("Sommaire")
 pages = ["Introduction", "Exploration des données 🌍", "Visualisation 📊", "Modélisation 💻", "Conclusion"]
