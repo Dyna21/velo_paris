@@ -45,7 +45,7 @@ df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/c
 #df['Date comptage'] = pd.to_datetime(df['Date comptage'])
     
 # Extraire la date sans l'heure
-df_corrected['Date'] = df_corrected['Date comptage'].dt.date
+#df_corrected['Date'] = df_corrected['Date comptage'].dt.date
     
 # Agréger les données par jour
 daily_sum = df_corrected.groupby('Date').agg({'Comptage horaire': 'sum'}).reset_index()
