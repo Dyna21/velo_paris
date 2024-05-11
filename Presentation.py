@@ -29,7 +29,7 @@ df = load_data('https://storage.cloud.google.com/streamlit-cycliste/comptage%20v
 # Charger le fichier corrigé pour le mettre en cache
 @st.cache_data
 def load_data1(fichier):
-    df = pd.read_csv(fichier, sep=',') # Télécharger les données
+    df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
 
 df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo%20corrected.csv')
