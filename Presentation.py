@@ -36,7 +36,7 @@ df_corrected = load_data1('https://storage.cloud.google.com/streamlit-cycliste/c
 
 # Convertir la colonne 'Date comptage' en datetime si elle n'est pas déjà de ce type
 #df_corrected['Date comptage']= pd.to_datetime(df_corrected['Date comptage'])
-df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
+#df_corrected["Date installation"]= pd.to_datetime(df_corrected["Date installation"])
 
 
 #df = pd.read_csv("comptage velo corrected.csv")
