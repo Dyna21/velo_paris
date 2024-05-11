@@ -19,7 +19,7 @@ st.set_page_config(
 st.title("🚲 :blue[Trafic cycliste à Paris]")
 
 # Charger le fichier original pour le mettre en cache
-@st.cache
+@st.cache_data
 def load_data(fichier):
     df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
@@ -27,7 +27,7 @@ def load_data(fichier):
 df = load_data('https://storage.cloud.google.com/streamlit-cycliste/comptage%20velo.csv')
 
 # Charger le fichier corrigé pour le mettre en cache
-@st.cache
+@st.cache_data
 def load_data1(fichier):
     df = pd.read_csv(fichier, sep=';') # Télécharger les données
     return df
